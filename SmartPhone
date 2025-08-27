@@ -1,0 +1,38 @@
+# Base class
+class Smartphone:
+    def __init__(self, brand, model, price):
+        self.brand = brand
+        self.model = model
+        self.__price = price  # private attribute (encapsulation)
+
+    def get_price(self):
+        return self.__price
+
+    def set_price(self, new_price):
+        if new_price > 0:
+            self.__price = new_price
+        else:
+            print("Invalid price!")
+
+    def info(self):
+        print(f"Brand: {self.brand}, Model: {self.model}, Price: ${self.__price}")
+
+
+# Derived class with inheritance
+class GamingPhone(Smartphone):
+    def __init__(self, brand, model, price, gpu):
+        super().__init__(brand, model, price)
+        self.gpu = gpu
+
+    def info(self):  # method overriding (polymorphism)
+        super().info()
+        print(f"GPU: {self.gpu}")
+
+
+# Create objects
+phone1 = Smartphone("Apple", "iPhone 15", 1200)
+phone2 = GamingPhone("Asus", "ROG Phone 7", 1000, "Adreno 730")
+
+phone1.info()
+print()
+phone2.info()
